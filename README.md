@@ -11,7 +11,7 @@ directions flows independently of the other direction forming a full duplex
 link. It is important to give the full path for the 2 trace files otherwise
 ns-3 will compile but do nothing since it will not use the files. If the correct
 path has been specified a few lines will appear showing the power save during
-the excution.(in my case the path is "/media/3Tdisk/...")
+the excution.(in my case the path is "/media/3Tdisk/github-ns3/ns3-dynamic/.....").
 
 How to compile
 --------------

@@ -1,0 +1,21 @@
+## -*- Mode: python; py-indent-offset: 4; indent-tabs-mode: nil; coding: utf-8; -*-
+
+def build(bld):
+    obj = bld.create_ns3_module('switched-ethernet', ['network', 'applications'])
+    obj.source = [
+        'model/switched-ethernet-net-device.cc',
+        'model/switched-ethernet-channel.cc',
+	'helper/switched-ethernet-helper.cc'
+        ]
+    headers = bld.new_task_gen(features=['ns3header'])
+    headers.module = 'switched-ethernet'
+    headers.source = [
+        'model/switched-ethernet-net-device.h',
+        'model/switched-ethernet-channel.h',
+	'helper/switched-ethernet-helper.h'
+        ]
+
+    if bld.env['ENABLE_EXAMPLES']:
+        bld.add_subdirs('examples')
+
+    bld.ns3_python_bindings()

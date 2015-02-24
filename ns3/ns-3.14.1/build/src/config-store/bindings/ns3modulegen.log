@@ -1,0 +1,11 @@
+>>>>>>>>>>>>>>>> []
+/media/3Tdisk/ns3-TON/ns3/ns-3.14.1/bindings/python/ns3modulegen_core_customizations.py:69: DeprecationWarning: Typo: set_tranformation -> set_transformation
+  handler.set_tranformation(self, orig_ctype)
+/media/3Tdisk/ns3-TON/ns3/pybindgen-0.15.0.809/pybindgen/settings.py:84: DeprecationWarning: The option pybindgen.settings.deprecated_virtuals has not been set.  I am going to assume the value of False, change it to True if it breaks your APIs. The option will eventually disappear (the deprecated behaviour will eventually disappear).
+  DeprecationWarning)
+/media/3Tdisk/ns3-TON/ns3/ns-3.14.1/src/config-store/bindings/modulegen__gcc_LP64.py:260: Warning: exception TypeLookupError(['ns3::AttributeConstructionList &'],) in wrapper protected: retval? ???::ConstructSelf (params?);
+  visibility='protected')
+/media/3Tdisk/ns3-TON/ns3/ns-3.14.1/src/config-store/bindings/modulegen__gcc_LP64.py:310: Warning: exception TypeLookupError(['ns3::Callback< ns3::ObjectBase *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: retval? ???::GetConstructor (params?) const;
+  is_const=True)
+bindings/python/ns3modulegen-modular.py:27: UserWarning: exception CodeGenerationError('ns3::FileConfig cannot be constructed (class has pure virtual methods)',) in wrapper <pybindgen.CppClass 'ns3::FileConfig'>
+  warnings.warn("exception %r in wrapper %s" % (exception, wrapper))

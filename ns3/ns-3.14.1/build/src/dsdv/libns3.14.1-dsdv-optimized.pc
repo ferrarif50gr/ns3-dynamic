@@ -1,0 +1,10 @@
+prefix=/usr/local
+libdir=/usr/local/lib
+includedir=/usr/local/include/ns3.14.1
+
+Name: libns3-dsdv
+Description: ns-3 module ns3-dsdv
+Version: 3.14.1
+Libs: -L${libdir} -Wl,-Bdynamic -lns3.14.1-dsdv-optimized
+Cflags: -I${includedir}
+Requires: libns3.14.1-internet-optimized libns3.14.1-wifi-optimized libns3.14.1-mesh-optimized libns3.14.1-applications-optimized
