@@ -17,27 +17,13 @@ using namespace ns3;
 NS_LOG_COMPONENT_DEFINE ("SwitchedEthernetPacketSocketExample");
 
 std::ofstream g_os;
-//std::ifstream trace;
-//PcapFile g_is;
-//FILE* g_is; 
 
 static void
 SinkRx (std::string path, Ptr<const Packet> p, const Address &address)
 {
-//  NS_LOG_UNCOND("Accessing receiver file");
   g_os << p->GetSize () << std::endl;
 }
 
-/*static void
-SinkTx (std::string path, Ptr<const Packet> p, const Address &address)
-{
- uint8_t expected[1600];
- uint32_t tsSec, tsUsec, inclLen, origLen, readLen;
- g_is.Read (expected, sizeof(expected), tsSec, tsUsec, inclLen, origLen, readLen);
- NS_LOG_UNCOND("File Opened");
-//  g_is.Read
-}
-*/
 int
 main (int argc, char *argv[])
 {
@@ -49,51 +35,7 @@ main (int argc, char *argv[])
   Config::SetDefault("ns3::TcpSocket::SegmentSize", UintegerValue(1434));
   CommandLine cmd;
   cmd.Parse (argc, argv);
-
-//  g_os.open ("switched-ethernet-packet-socket-sink.tr",std::ios_base::binary | std::ios_base::out);
-//  trace.open ("./scratch/trace2", std::ios::in);
-
-//  uint8_t expected[1600];
-//  uint32_t tsSec, tsUsec, inclLen, origLen, readLen;
-//  g_is.Read (expected, sizeof(expected), tsSec, tsUsec, inclLen, origLen, readLen);
-
-
- //cout<< "let's see" << " "<<  expected << " "<< tsSec << " "<< tsUsec << " "<< inclLen <<  " "<< origLen <<  " "<< readLen << endl;  
-
-/*double ttt=2.23; 
-int sss=1;
-char* line = new char[100000];
-
-for(int j=0; j<3; j++)
-{
-	trace.getline(line,99999,'\n');
-
-	cout << "before " << line << endl;
-	sscanf(line,"%lf %d",&ttt, &sss);
-	tsSec = uint32_t(int(ttt));
-	tsUsec = uint32_t(int(1000000000*(ttt-int(ttt))));
-	inclLen = uint32_t(sss);
-	origLen = inclLen;
-	readLen = inclLen;
-
-	cout << "reading from file" << endl; 
-	cout << ttt << " " << sss << endl;
-	cout << tsSec << endl;
-	cout << tsUsec << endl;
-	cout << inclLen << endl;
-	cout << origLen << endl;
-	cout << readLen << endl;
-
-	cin.get();
-}
-*/
- // cout << g_is.Eof() << g_is.Fail() << endl;
-
- // g_is.Read (expected, sizeof(expected), tsSec, tsUsec, inclLen, origLen, readLen);
-//  g_is.Read (expected, sizeof(expected), tsSec, tsUsec, inclLen, origLen, readLen);
-//cout<< "let's see" << " "<<  expected << " "<< tsSec << " "<< tsUsec << " "<< inclLen <<  " "<< origLen <<  " "<< readLen << endl;  
-
-//NS_LOG_UNCONs");
+ 
   
   NS_LOG_INFO ("Create nodes.");
 
@@ -104,7 +46,7 @@ for(int j=0; j<3; j++)
   InternetStackHelper internet;
   internet.Install (nodes);
 
-  // create the two full-duplex channels that are used to send packets to node 0 from nodes 1 and 2
+  // create the EEE full-duplex channel that are used to send packets to node 0 from nodes 1 and 2
   NS_LOG_INFO ("Create channels.");
   Ptr<SwitchedEthernetChannel> channel = CreateObjectWithAttributes<SwitchedEthernetChannel> (
       "DataRate", DataRateValue (DataRate (1000000000)),
@@ -187,18 +129,9 @@ for(int j=0; j<3; j++)
   //LogComponentEnable ("SwitchedEthernetChannel", LOG_LEVEL_ALL);
 
   AsciiTraceHelper ascii;
-//  switchedEth.EnableAsciiAll (ascii.CreateFileStream ("switched-ethernet-MyScenario1.tr"));
   Ptr<OutputStreamWrapper> stream = ascii.CreateFileStream("scenarioFile.tr");
   stream->GetStream()->precision(10);
   switchedEth.EnableAsciiAll(stream);
-//  switchedEth.EnablePcapAll ("scenarioFile", false);
-
-/*  std::ofstream ascii;
-  ascii.open ("my2-helper.tr");
-  SwitchedEthernetHelper::EnableAsciiAll (ascii);
-  SwitchedEthernetHelper::EnablePcapAll ("my2-helper");
-  //SwitchedEthernetHelper::EnablePcapAll ("wsn3-helper");
-*/
   NS_LOG_INFO ("Run Simulation.");
   Simulator::Stop(stopTime + Seconds(1.0));
   Simulator::Run ();
@@ -206,6 +139,5 @@ for(int j=0; j<3; j++)
   NS_LOG_INFO ("Done.");
 
   g_os.close ();
- // trace.close ();
   return 0;
 }
